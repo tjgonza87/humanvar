@@ -38,10 +38,10 @@ From now on, use a text editor like Notepad++ to write your code, and just copy
 it into R Studio for ease of use.
 
 Draw a world map using the command:
-'''r
+```r
 	map('worldHires', xlim=c(-120,142), ylim=c(-12,72), col='gray', fill=FALSE)
 	box()
-'''
+```
 
 It should look like this:
 <center>
