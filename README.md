@@ -17,18 +17,18 @@ Making sure that you are in the correct working directory.
 
 Load the packages we need to plot the data on a geographic map using:
 
-'''r
+```r
 	library(maps)
 	library(mapdata)
 	library(scales)
 	library(mapplots)
-'''
+```
 
 If you dont have the packages installed, use:
 
-'''r
+```r
 	install.packages('maps')
-'''
+```
 
 And install all four before using the library command.
 
@@ -52,11 +52,11 @@ It should look like this:
 
 Using the command:
 
-'''r
+```r
 	map('worldHires', xlim=c(-120,142), ylim=c(-12,72), col='gray', fill=FALSE)
 	points(freq$long, freq$lat, pch=16, col="salmon")
 	box()
-'''
+```
 We can plot the freq.df latitude and longitude on the world map, and get this:
 <center>
 <img src="Worldmap_points.png" width=500px></img>
@@ -65,11 +65,11 @@ We can plot the freq.df latitude and longitude on the world map, and get this:
 We can vary the size of the dot depending on the population size adding the cex
 variable to points:
 
-'''r
+```r
 	map('worldHires', xlim=c(-120,142), ylim=c(-12,72), col='gray', fill=FALSE)
 	points(freq$long, freq$lat, pch=16, cex=freq$Allele_A*1.5, col="salmon")
 	box()
-'''
+```
 
 <center>
 <img src="Worldmap_varpoints.png" width=500px></img>
@@ -80,12 +80,12 @@ variable to points:
 These dots don't give us any info on the allele frequency, so we cant plot pi
 charts instead of dots using the command:
 
-'''r
+```r
 	map('worldHires', xlim=c(-120,142), ylim=c(-12,72), col='gray', fill=FALSE)
 	add.pie(z=c(0.104, 0.895), x=-59.5412, y=13.1776, radius=192/100, 
             col=c(alpha("orange", 0.6), alpha("blue", 0.6)), labels="")
 	box()
-'''
+```
 
 This will only plot one point however:
 <center>
@@ -94,14 +94,14 @@ This will only plot one point however:
 
 To plot all the points, we will need to use a For loop:
 
-'''r
+```r
 	map("worldHires", xlim=c(-120,142), ylim=c(-12,72), col="grey", fill=FALSE)
 	for (m in 1:26) {add.pie(z=c(freq$Allele_A[m], freq$Allele_G[m]), x=freq$long[m], y=freq$lat[m], radius=freq$N_CHR[m]/100, col=c(alpha("orange", 0.6), alpha("purple", 0.6)), labels="")
 	m=m+1
 
 	}
 	box()
-'''
+```
 
 <center>
 <img src="Worldmap_allpie.png" width=500px></img>
@@ -109,7 +109,7 @@ To plot all the points, we will need to use a For loop:
 
 Now, we can add the legend and labels to the chart.
 
-'''r
+```r
 	map("worldHires", xlim=c(-120,142), ylim=c(-12,72), col="grey", fill=FALSE)
 	for (m in 1:26) {add.pie(z=c(freq$Allele_A[m], freq$Allele_G[m]), x=freq$long[m], y=freq$lat[m], radius=freq$N_CHR[m]/100, col=c(alpha("orange", 0.6), alpha("purple", 0.6)), labels="")
 	m=m+1
@@ -121,7 +121,7 @@ Now, we can add the legend and labels to the chart.
 	legend('topright', bty='1', c("Freq. Allele A", "Freq. Allele G"), 
         pch=16, col=c(alpha("orange", 0.6), alpha("blue", 0.6)), pt.cex=1, cex=0.7)
 	title(main="Global Distribution of rs1426654 Alleles", font.main=1, cex.main=0.9)
-'''
+```
 
 <center>
 <img src="Worldmap_done.png" width=500px></img>
@@ -129,7 +129,7 @@ Now, we can add the legend and labels to the chart.
 
 To save the plot, we can use the pdf function.
 
-'''r
+```r
 	pdf('WorldPie_Final2.pdf', width=10, height=7)
 	
 	map("worldHires", xlim=c(-120,142), ylim=c(-12,72), col="grey", fill=FALSE)
@@ -145,4 +145,4 @@ To save the plot, we can use the pdf function.
 	title(main="Global Distribution of rs1426654 Alleles", font.main=1, cex.main=0.9)
 	
 	dev.off()
-'''
+```
